@@ -1,5 +1,8 @@
 package edu.ucalgary.oop;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MedicalRecord {
     Location location;
     String treatmentDetails;
@@ -36,8 +39,14 @@ public class MedicalRecord {
     }
     
     boolean isValidDateFormat(String date) {
-        
+        Pattern pattern = Pattern.compile("^\\d\\d\\d\\d-\\d\\d-\\d\\d", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(date);
+        boolean matchFound = matcher.find();
+        if(matchFound) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
 }
 
